@@ -9,6 +9,7 @@ You can run them with:
 Benchmarks:
 
 * [`Stream`](#stream)
+* [wrapping in `Collections::unmodifiableList`](#unmodifiablelist)
 * [removing from `ArrayList`](#arraylistremoveat)
 
 
@@ -39,6 +40,43 @@ To tweak the benchmarks, take a look into their superclass [`AbstractIterationBe
 ### Results
 
 The results are collected in [this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1K-y44zFrBWpZXkdaBI80-g_MqJiuphmuZAP6gg6zz_4/edit#gid=1205798000).
+
+
+## Unmodifiable List
+
+Following up [on this conversation](https://twitter.com/gunnarmorling/status/1081228251094237185), I benchmarked how wrapping lists into `Collections::unmodifiableList` impacts performance.
+
+### Code
+
+* Package: [`org.codefx.lab.benchmarks.nested_unmodifiable`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable)
+* Benchmark class name: [`NestedUnmodifiableBenchmark`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable/NestedUnmodifiableBenchmark.java)
+
+### Results
+
+| Benchmark    |  Depth  |     Score      Error  Units |
+| ------------ | -------:| ---------------------------:|
+| forEach      |      0  |     6.482 ±    0.163  ms/op |
+| forEach      |      1  |     6.551 ±    0.092  ms/op |
+| forEach      |     10  |     6.659 ±    0.270  ms/op |
+| forEach      |    100  |     6.666 ±    0.066  ms/op |
+| forEach      |  1_000  |     6.703 ±    0.180  ms/op |
+| iterator     |      0  |     5.555 ±    0.038  ms/op |
+| iterator     |      1  |     7.576 ±    0.232  ms/op |
+| iterator     |     10  |    35.480 ±    0.435  ms/op |
+| iterator     |    100  |   415.162 ±    2.583  ms/op |
+| iterator     |  1_000  |  4813.140 ±   29.506  ms/op |
+| linearAccess |      0  |     4.057 ±    0.020  ms/op |
+| linearAccess |      1  |     5.222 ±    0.131  ms/op |
+| linearAccess |     10  |    33.361 ±    0.287  ms/op |
+| linearAccess |    100  |   422.536 ±    1.455  ms/op |
+| linearAccess |  1_000  |  4691.470 ±   47.073  ms/op |
+| linearAccess | 10_000  | 57178.027 ± 1238.238  ms/op |
+| randomAccess |      0  |     8.126 ±    0.390  ms/op |
+| randomAccess |      1  |     8.347 ±    0.322  ms/op |
+| randomAccess |     10  |    30.222 ±    4.118  ms/op |
+| randomAccess |    100  |   258.086 ±    7.145  ms/op |
+| randomAccess |  1_000  |  2508.090 ±   32.911  ms/op |
+| randomAccess | 10_000  | 29827.984 ± 1306.416  ms/op |
 
 
 ## ArrayList::removeAt
