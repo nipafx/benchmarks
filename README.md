@@ -8,7 +8,37 @@ You can run them with:
 
 Benchmarks:
 
+* [`Stream`](#stream)
 * [removing from `ArrayList`](#arraylistremoveat)
+
+
+## Stream
+
+The benchmark code for the posts [_Stream Performance_](http://blog.codefx.org/java/stream-performance/) and [_Stream Performance - Your Ideas_](http://blog.codefx.org/java/stream-performance-your-ideas/).
+Read them for details on the setup.
+
+### Code
+
+Package: [`org.codefx.lab.benchmarks.stream`](src/main/java/org/codefx/lab/benchmarks/stream)
+
+For the first post, benchmarks are split into three classes that cover operations of different complexity:
+
+* [`SimpleOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/SimpleOperationsBenchmark.java): integer comparison and addition
+* [`MediumOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/MediumOperationsBenchmark.java): a handful of multiplications
+* [`ComplexOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/ComplexOperationsBenchmark.java): object creation and string manipulation
+
+And for the second post:
+
+* [`CommentOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/CommentOperationsBenchmark.java): benchmarks according to your ideas
+
+There's also an unpublished experiment:
+* [`ControlStructuresBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/ControlStructuresBenchmark.java): benchmarks for various control structures
+
+To tweak the benchmarks, take a look into their superclass [`AbstractIterationBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/AbstractIterationBenchmark.java).
+
+### Results
+
+The results are collected in [this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1K-y44zFrBWpZXkdaBI80-g_MqJiuphmuZAP6gg6zz_4/edit#gid=1205798000).
 
 
 ## ArrayList::removeAt
