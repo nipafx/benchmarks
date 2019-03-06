@@ -1,5 +1,6 @@
 package org.codefx.lab.benchmarks.nested_unmodifiable;
 
+import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Param;
@@ -33,7 +34,7 @@ public class WrappingBenchmark extends NestedBenchmark {
 		underlyingSet = new HashSet<>();
 	}
 
-	//	@Benchmark
+	@Benchmark
 	public Set<Integer> originalUnmodifiable() {
 		Set<Integer> wrapped = underlyingSet;
 		for (int i = 0; i < _depth; i++)
@@ -41,7 +42,7 @@ public class WrappingBenchmark extends NestedBenchmark {
 		return wrapped;
 	}
 
-	//	@Benchmark
+	@Benchmark
 	public Set<Integer> withInstanceOfCheck() {
 		Set<Integer> wrapped = underlyingSet;
 		for (int i = 0; i < _depth; i++)
