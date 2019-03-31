@@ -8,6 +8,9 @@ import org.openjdk.jmh.infra.Blackhole;
 
 import java.util.Collection;
 import java.util.Random;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toCollection;
 
 public abstract class NestedUnmodifiableCollectionBenchmark<T extends Collection<Integer>> extends NestedBenchmark {
 
@@ -23,10 +26,9 @@ public abstract class NestedUnmodifiableCollectionBenchmark<T extends Collection
 
 	@Setup(Level.Trial)
 	public void createWrappedCollection() {
-		T underlyingCollection = createUnderlyingCollection();
-		new Random()
+		T underlyingCollection = new Random()
 				.ints(size()).mapToObj(i -> i)
-				.forEach(underlyingCollection::add);
+				.collect(toCollection(this::createUnderlyingCollection));
 		unmodifiableCollection = wrap(underlyingCollection, depth());
 	}
 

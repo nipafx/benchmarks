@@ -9,31 +9,24 @@ You can run them with:
 Benchmarks:
 
 * [`Stream`](#stream)
-* [wrapping in `Collections::unmodifiableList`](#unmodifiablelist)
+* [wrapping in `Collections::unmodifiableList`](#unmodifiable-list)
 * [removing from `ArrayList`](#arraylistremoveat)
 
 
 ## Stream
 
-The benchmark code for the posts [_Stream Performance_](http://blog.codefx.org/java/stream-performance/) and [_Stream Performance - Your Ideas_](http://blog.codefx.org/java/stream-performance-your-ideas/).
+The benchmarks for the posts [_Stream Performance_](http://blog.codefx.org/java/stream-performance/) and [_Stream Performance - Your Ideas_](http://blog.codefx.org/java/stream-performance-your-ideas/).
 Read them for details on the setup.
 
 ### Code
 
-Package: [`org.codefx.lab.benchmarks.stream`](src/main/java/org/codefx/lab/benchmarks/stream)
-
-For the first post, benchmarks are split into three classes that cover operations of different complexity:
-
-* [`SimpleOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/SimpleOperationsBenchmark.java): integer comparison and addition
-* [`MediumOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/MediumOperationsBenchmark.java): a handful of multiplications
-* [`ComplexOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/ComplexOperationsBenchmark.java): object creation and string manipulation
-
-And for the second post:
-
-* [`CommentOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/CommentOperationsBenchmark.java): benchmarks according to your ideas
-
-There's also an unpublished experiment:
-* [`ControlStructuresBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/ControlStructuresBenchmark.java): benchmarks for various control structures
+* **Package**: [`org.codefx.lab.benchmarks.stream`](src/main/java/org/codefx/lab/benchmarks/stream)
+* **Classes**:
+	* [`SimpleOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/SimpleOperationsBenchmark.java): integer comparison and addition (first post)
+	* [`MediumOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/MediumOperationsBenchmark.java): a handful of multiplications (first post)
+	* [`ComplexOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/ComplexOperationsBenchmark.java): object creation and string manipulation (first post)
+	* [`CommentOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/CommentOperationsBenchmark.java): benchmarks according to your ideas (second post)
+	* [`ControlStructuresBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/ControlStructuresBenchmark.java): benchmarks for various control structures (unpublished experiment)
 
 To tweak the benchmarks, take a look into their superclass [`AbstractIterationBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/AbstractIterationBenchmark.java).
 
@@ -44,39 +37,65 @@ The results are collected in [this Google Spreadsheet](https://docs.google.com/s
 
 ## Unmodifiable List
 
-Following up [on this conversation](https://twitter.com/gunnarmorling/status/1081228251094237185), I benchmarked how wrapping lists into `Collections::unmodifiableList` impacts performance.
+The benchmarks for the post [_Can `instanceof` make Unmodifiable Collections faster?_](https://www.opsian.com/blog/can-instanceof-make-unmodifiable-collections-faster/) on [Opsian's blog](https://www.opsian.com/blog/), which follows up on [a Twitter conversation](https://twitter.com/gunnarmorling/status/1081228251094237185) and measures how wrapping lists into `Collections::unmodifiableList` impacts performance.
 
 ### Code
 
-* Package: [`org.codefx.lab.benchmarks.nested_unmodifiable`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable)
-* Benchmark class name: [`NestedUnmodifiableBenchmark`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable/NestedUnmodifiableBenchmark.java)
+* **Package**: [`org.codefx.lab.benchmarks.nested_unmodifiable`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable)
+* **Classes**:
+	* [`NestedUnmodifiableSetBenchmark`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable/NestedUnmodifiableSetBenchmark.java): benchmarks a few operations on nested sets
+	* [`NestedUnmodifiableListBenchmark`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable/NestedUnmodifiableListBenchmark.java): benchmarks a few more operations on nested lists 
+	* [`WrappingBenchmark`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable/WrappingBenchmark.java): benchmarks impact of adding `instanceof` to `Collections::unmodifiable...`.
+
+To tweak the benchmarks, take a look into their superclass [`AbstractIterationBenchmark`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable/NestedBenchmark.java).
 
 ### Results
 
-| Benchmark    |  Depth  |     Score      Error  Units |
-| ------------ | -------:| ---------------------------:|
-| forEach      |      0  |     6.482 ±    0.163  ms/op |
-| forEach      |      1  |     6.551 ±    0.092  ms/op |
-| forEach      |     10  |     6.659 ±    0.270  ms/op |
-| forEach      |    100  |     6.666 ±    0.066  ms/op |
-| forEach      |  1_000  |     6.703 ±    0.180  ms/op |
-| iterator     |      0  |     5.555 ±    0.038  ms/op |
-| iterator     |      1  |     7.576 ±    0.232  ms/op |
-| iterator     |     10  |    35.480 ±    0.435  ms/op |
-| iterator     |    100  |   415.162 ±    2.583  ms/op |
-| iterator     |  1_000  |  4813.140 ±   29.506  ms/op |
-| linearAccess |      0  |     4.057 ±    0.020  ms/op |
-| linearAccess |      1  |     5.222 ±    0.131  ms/op |
-| linearAccess |     10  |    33.361 ±    0.287  ms/op |
-| linearAccess |    100  |   422.536 ±    1.455  ms/op |
-| linearAccess |  1_000  |  4691.470 ±   47.073  ms/op |
-| linearAccess | 10_000  | 57178.027 ± 1238.238  ms/op |
-| randomAccess |      0  |     8.126 ±    0.390  ms/op |
-| randomAccess |      1  |     8.347 ±    0.322  ms/op |
-| randomAccess |     10  |    30.222 ±    4.118  ms/op |
-| randomAccess |    100  |   258.086 ±    7.145  ms/op |
-| randomAccess |  1_000  |  2508.090 ±   32.911  ms/op |
-| randomAccess | 10_000  | 29827.984 ± 1306.416  ms/op |
+Find all results in [this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1RTpAuRQr5G9otSxAvMFjNBvzBnklo6qwyZGi_CuwmUQ/edit?usp=sharing).
+Here's the section for `ArrayList` with 1 million elements, which is representative for the overall results:
+
+| Benchmark    | Depth |       Score      Error  Units |
+| ------------ | -----:| -----------------------------:|
+| forEach      |     0 |    6499.524 ±   116.113 μs/op |
+| forEach      |     1 |    6466.625 ±    79.003 μs/op |
+| forEach      |    10 |    6572.141 ±    49.209 μs/op |
+| forEach      |   100 |    6429.473 ±    35.505 μs/op |
+| forEach      |  1000 |    6756.348 ±   103.719 μs/op |
+| isEmpty      |     0 |       0.003 ±     0.001 μs/op |
+| isEmpty      |     1 |       0.004 ±     0.001 μs/op |
+| isEmpty      |    10 |       0.015 ±     0.001 μs/op |
+| isEmpty      |   100 |       0.205 ±     0.004 μs/op |
+| isEmpty      |  1000 |       2.420 ±     0.020 μs/op |
+| iterator     |     0 |    5729.565 ±   429.593 μs/op |
+| iterator     |     1 |    7343.901 ±   334.612 μs/op |
+| iterator     |    10 |   35199.093 ±   285.387 μs/op |
+| iterator     |   100 |  417297.905 ±  9552.693 μs/op |
+| iterator     |  1000 | 4778937.048 ± 46199.758 μs/op |
+| linearAccess |     0 |    3774.128 ±    39.618 μs/op |
+| linearAccess |     1 |    4714.176 ±    22.733 μs/op |
+| linearAccess |    10 |   30394.111 ±   218.719 μs/op |
+| linearAccess |   100 |  417612.502 ±  4279.777 μs/op |
+| linearAccess |  1000 | 4661914.890 ± 30868.705 μs/op |
+| randomAccess |     0 |    7231.825 ±   587.417 μs/op |
+| randomAccess |     1 |    7406.953 ±   692.301 μs/op |
+| randomAccess |    10 |   26135.629 ±   688.995 μs/op |
+| randomAccess |   100 |  243328.907 ±  6699.941 μs/op |
+| randomAccess |  1000 | 2457828.925 ± 17852.538 μs/op |
+
+And here are the numbers for `WrappingBenchmark`:
+
+| Benchmark            | Depth  |    Score      Error  Units |
+| -------------------- | ------:| --------------------------:|
+| originalUnmodifiable |      1 |     8.508 ±    0.770 ns/op |
+| originalUnmodifiable |     10 |    50.997 ±    2.696 ns/op |
+| originalUnmodifiable |    100 |   413.526 ±   74.531 ns/op |
+| originalUnmodifiable |  1_000 |  3405.815 ±  382.755 ns/op |
+| originalUnmodifiable | 10_000 | 32218.869 ± 3729.403 ns/op |
+| withInstanceOfCheck  |      1 |     6.236 ±    0.514 ns/op |
+| withInstanceOfCheck  |     10 |    15.241 ±    0.686 ns/op |
+| withInstanceOfCheck  |    100 |   108.349 ±    1.621 ns/op |
+| withInstanceOfCheck  |  1_000 |   964.785 ±   19.586 ns/op |
+| withInstanceOfCheck  | 10_000 |  9575.831 ±  197.473 ns/op |
 
 
 ## ArrayList::removeAt
@@ -85,8 +104,8 @@ Given a large `ArrayList` and a bunch of indices - what's a good way to get a li
 
 ### Code
 
-* Package: [`org.codefx.lab.benchmarks.arraylist_removeat`](src/main/java/org/codefx/lab/benchmarks/arraylist_removeat)
-* Benchmark class name: [`RemoveBenchmark`](src/main/java/org/codefx/lab/benchmarks/arraylist_removeat/RemoveBenchmark.java)
+* **Package**: [`org.codefx.lab.benchmarks.arraylist_removeat`](src/main/java/org/codefx/lab/benchmarks/arraylist_removeat)
+* **Classes**: [`RemoveBenchmark`](src/main/java/org/codefx/lab/benchmarks/arraylist_removeat/RemoveBenchmark.java)
 
 ### Results
 

@@ -23,6 +23,9 @@ local.properties
 *.iws
 /out/
 
+# VS Code
+/.vscode/
+
 # Gradle
 
 .gradle/
