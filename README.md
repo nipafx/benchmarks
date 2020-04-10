@@ -13,6 +13,7 @@ Benchmarks:
 * [`Stream`](#stream)
 * [wrapping in `Collections::unmodifiableList`](#unmodifiable-list)
 * [removing from `ArrayList`](#arraylistremoveat)
+* [helpful NPE messages](#helpful-npe-messages)
 
 
 ## Stream
@@ -168,4 +169,54 @@ RemoveBenchmark.nullifyRemove      1_000_000           0  sample    5680    4751
 RemoveBenchmark.nullifyRemove      1_000_000          10  sample    2585   10454.266 ±  103.232  us/op
 RemoveBenchmark.nullifyRemove      1_000_000         100  sample    2698   10016.958 ±  114.831  us/op
 RemoveBenchmark.nullifyRemove      1_000_000       1_000  sample    2725    9911.803 ±   82.370  us/op
+```
+
+
+## Helpful NPE Messages
+
+In Java 14, [JEP 358](https://openjdk.java.net/jeps/358) introduced more detailed `NullPointerException` messages.
+They're deactiveated by default for various reasons, one of them performance:
+
+> The algorithm adds some overhead to the production of a stack trace.
+> However, this is comparable to the stack walking done when raising the exception.
+> If an application frequently throws and prints messages so that the printing affects performance, already throwing the exception imposes an overhead that definitely should be avoided.
+
+How much overhead do the messages add?
+
+### Code
+
+* **Package**: [`org.codefx.lab.benchmarks.npe`](src/main/java/org/codefx/lab/benchmarks/npe)
+* **Classes**:
+	* [`NpeBenchmarks`](src/main/java/org/codefx/lab/benchmarks/npe/NpeBenchmarks.java)
+
+To compare numbers, run the benchmark with (`-XX:+ShowCodeDetailsInExceptionMessages`) and without (`-XX:-ShowCodeDetailsInExceptionMessages`) detailed messages.
+
+### Preliminary Results
+
+With detailed message:
+
+```
+Benchmark                                (checkMessage)  Mode  Cnt        Score        Error  Units
+NpeBenchmarks.throwNpeFromNullArrayEntry          false  avgt    3        3,924 ±      0,416  ns/op
+NpeBenchmarks.throwNpeFromNullArrayEntry           true  avgt    3       26,551 ±      5,265  ns/op
+NpeBenchmarks.throwNpeFromNullInstance            false  avgt    3        3,943 ±      0,764  ns/op
+NpeBenchmarks.throwNpeFromNullInstance             true  avgt    3       28,233 ±     15,923  ns/op
+NpeBenchmarks.throwNpeFromNullReturn              false  avgt    3        4,020 ±      0,269  ns/op
+NpeBenchmarks.throwNpeFromNullReturn               true  avgt    3       27,173 ±      8,789  ns/op
+NpeBenchmarks.throwNpeManually                    false  avgt    3      919,585 ±     92,235  ns/op
+NpeBenchmarks.throwNpeManually                     true  avgt    3     1429,069 ±    103,055  ns/op
+```
+
+Without detailed message:
+
+```
+Benchmark                                (checkMessage)  Mode  Cnt        Score        Error  Units
+NpeBenchmarks.throwNpeFromNullArrayEntry          false  avgt    3        3,907 ±      0,991  ns/op
+NpeBenchmarks.throwNpeFromNullArrayEntry           true  avgt    3       21,764 ±      4,887  ns/op
+NpeBenchmarks.throwNpeFromNullInstance            false  avgt    3        3,910 ±      0,434  ns/op
+NpeBenchmarks.throwNpeFromNullInstance             true  avgt    3       21,098 ±      0,948  ns/op
+NpeBenchmarks.throwNpeFromNullReturn              false  avgt    3        3,875 ±      0,192  ns/op
+NpeBenchmarks.throwNpeFromNullReturn               true  avgt    3       21,593 ±      0,409  ns/op
+NpeBenchmarks.throwNpeManually                    false  avgt    3      924,070 ±    194,407  ns/op
+NpeBenchmarks.throwNpeManually                     true  avgt    3      941,316 ±    172,077  ns/op
 ```
