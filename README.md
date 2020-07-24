@@ -11,6 +11,7 @@ Replace `${BENCHMARK}` with either a package or class name to run just the speci
 Benchmarks:
 
 * [`Stream`](#stream)
+* [vectorization in parallel streams](#parallel-stream-vectorization)
 * [wrapping in `Collections::unmodifiableList`](#unmodifiable-list)
 * [removing from `ArrayList`](#arraylistremoveat)
 * [helpful NPE messages](#helpful-npe-messages)
@@ -37,6 +38,24 @@ To tweak the benchmarks, take a look into their superclass [`AbstractIterationBe
 
 The results are collected in [this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1K-y44zFrBWpZXkdaBI80-g_MqJiuphmuZAP6gg6zz_4/edit#gid=1205798000).
 
+
+## Parallel Stream Vectorization
+
+Benchmarks for [Heinz Kabutz' tweet](https://twitter.com/heinzkabutz/status/1286603068990160898) on computing factorials with a parallel stream, where parallelization increased performance by more than 1x per core.
+
+### Code
+
+* **Package**: [`org.codefx.lab.benchmarks.stream.vectorization`](src/main/java/org/codefx/lab/benchmarks/stream/vectorization)
+* **Classes**: [`VectorizationBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/vectorization/VectorizationBenchmark.java)
+
+### Results
+
+| Benchmark | (number) | (parallel) |     Score Units |
+| --------- | -------- | ---------- | ---------------:|
+| factorial |   200000 |      false | 12267.158 ms/op |
+| factorial |   200000 |       true |   166.953 ms/op |
+
+This was done on a Ryzen 9 3900X, which has 24 logical cores, so you would expect a speedup of at most 24x, not the measured ~70x.
 
 ## Unmodifiable List
 
