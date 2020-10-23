@@ -20,20 +20,20 @@ Benchmarks:
 
 ## Stream
 
-The benchmarks for the posts [_Stream Performance_](http://blog.codefx.org/java/stream-performance/) and [_Stream Performance - Your Ideas_](http://blog.codefx.org/java/stream-performance-your-ideas/).
+The benchmarks for the posts [_Stream Performance_](https://nipafx.dev/java-stream-performance) and [_Stream Performance - Your Ideas_](https://nipafx.dev/java-stream-performance-your-ideas).
 Read them for details on the setup.
 
 ### Code
 
-* **Package**: [`org.codefx.lab.benchmarks.stream`](src/main/java/org/codefx/lab/benchmarks/stream)
+* **Package**: [`dev.nipafx.lab.benchmarks.stream`](src/main/java/dev/nipafx/lab/benchmarks/stream)
 * **Classes**:
-	* [`SimpleOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/SimpleOperationsBenchmark.java): integer comparison and addition (first post)
-	* [`MediumOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/MediumOperationsBenchmark.java): a handful of multiplications (first post)
-	* [`ComplexOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/ComplexOperationsBenchmark.java): object creation and string manipulation (first post)
-	* [`CommentOperationsBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/CommentOperationsBenchmark.java): benchmarks according to your ideas (second post)
-	* [`ControlStructuresBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/ControlStructuresBenchmark.java): benchmarks for various control structures (unpublished experiment)
+	* [`SimpleOperationsBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/stream/SimpleOperationsBenchmark.java): integer comparison and addition (first post)
+	* [`MediumOperationsBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/stream/MediumOperationsBenchmark.java): a handful of multiplications (first post)
+	* [`ComplexOperationsBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/stream/ComplexOperationsBenchmark.java): object creation and string manipulation (first post)
+	* [`CommentOperationsBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/stream/CommentOperationsBenchmark.java): benchmarks according to your ideas (second post)
+	* [`ControlStructuresBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/stream/ControlStructuresBenchmark.java): benchmarks for various control structures (unpublished experiment)
 
-To tweak the benchmarks, take a look into their superclass [`AbstractIterationBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/AbstractIterationBenchmark.java).
+To tweak the benchmarks, take a look into their superclass [`AbstractIterationBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/stream/AbstractIterationBenchmark.java).
 
 ### Results
 
@@ -46,8 +46,8 @@ Benchmarks for [Heinz Kabutz' tweet](https://twitter.com/heinzkabutz/status/1286
 
 ### Code
 
-* **Package**: [`org.codefx.lab.benchmarks.stream.vectorization`](src/main/java/org/codefx/lab/benchmarks/stream/vectorization)
-* **Classes**: [`VectorizationBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/vectorization/VectorizationBenchmark.java)
+* **Package**: [`dev.nipafx.lab.benchmarks.stream.vectorization`](src/main/java/dev/nipafx/lab/benchmarks/stream/vectorization)
+* **Classes**: [`VectorizationBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/stream/vectorization/VectorizationBenchmark.java)
 
 ### Results
 
@@ -65,8 +65,8 @@ Benchmarks for [the exploration of `Stream::mapMulti`](java-16-stream-mapmulti).
 
 ### Code
 
-* **Package**: [`org.codefx.lab.benchmarks.stream.map_multi`](src/main/java/org/codefx/lab/benchmarks/stream/map_multi)
-* **Classes**: [`MapMulitBenchmark`](src/main/java/org/codefx/lab/benchmarks/stream/map_multi/MapMulitBenchmark.java)
+* **Package**: [`dev.nipafx.lab.benchmarks.stream.map_multi`](src/main/java/dev/nipafx/lab/benchmarks/stream/map_multi)
+* **Classes**: [`MapMulitBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/stream/map_multi/MapMulitBenchmark.java)
 
 ### Results
 
@@ -128,13 +128,13 @@ The benchmarks for the post [_Can `instanceof` make Unmodifiable Collections fas
 
 ### Code
 
-* **Package**: [`org.codefx.lab.benchmarks.nested_unmodifiable`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable)
+* **Package**: [`dev.nipafx.lab.benchmarks.nested_unmodifiable`](src/main/java/dev/nipafx/lab/benchmarks/nested_unmodifiable)
 * **Classes**:
-	* [`NestedUnmodifiableSetBenchmark`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable/NestedUnmodifiableSetBenchmark.java): benchmarks a few operations on nested sets
-	* [`NestedUnmodifiableListBenchmark`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable/NestedUnmodifiableListBenchmark.java): benchmarks a few more operations on nested lists 
-	* [`WrappingBenchmark`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable/WrappingBenchmark.java): benchmarks impact of adding `instanceof` to `Collections::unmodifiable...`.
+	* [`NestedUnmodifiableSetBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/nested_unmodifiable/NestedUnmodifiableSetBenchmark.java): benchmarks a few operations on nested sets
+	* [`NestedUnmodifiableListBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/nested_unmodifiable/NestedUnmodifiableListBenchmark.java): benchmarks a few more operations on nested lists 
+	* [`WrappingBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/nested_unmodifiable/WrappingBenchmark.java): benchmarks impact of adding `instanceof` to `Collections::unmodifiable...`.
 
-To tweak the benchmarks, take a look into their superclass [`AbstractIterationBenchmark`](src/main/java/org/codefx/lab/benchmarks/nested_unmodifiable/NestedBenchmark.java).
+To tweak the benchmarks, take a look into their superclass [`AbstractIterationBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/nested_unmodifiable/NestedBenchmark.java).
 
 ### Results
 
@@ -191,8 +191,8 @@ Given a large `ArrayList` and a bunch of indices - what's a good way to get a li
 
 ### Code
 
-* **Package**: [`org.codefx.lab.benchmarks.arraylist_removeat`](src/main/java/org/codefx/lab/benchmarks/arraylist_removeat)
-* **Classes**: [`RemoveBenchmark`](src/main/java/org/codefx/lab/benchmarks/arraylist_removeat/RemoveBenchmark.java)
+* **Package**: [`dev.nipafx.lab.benchmarks.arraylist_removeat`](src/main/java/dev/nipafx/lab/benchmarks/arraylist_removeat)
+* **Classes**: [`RemoveBenchmark`](src/main/java/dev/nipafx/lab/benchmarks/arraylist_removeat/RemoveBenchmark.java)
 
 ### Results
 
@@ -269,9 +269,9 @@ How much overhead do the messages add?
 
 ### Code
 
-* **Package**: [`org.codefx.lab.benchmarks.npe`](src/main/java/org/codefx/lab/benchmarks/npe)
+* **Package**: [`dev.nipafx.lab.benchmarks.npe`](src/main/java/dev/nipafx/lab/benchmarks/npe)
 * **Classes**:
-	* [`NpeBenchmarks`](src/main/java/org/codefx/lab/benchmarks/npe/NpeBenchmarks.java)
+	* [`NpeBenchmarks`](src/main/java/dev/nipafx/lab/benchmarks/npe/NpeBenchmarks.java)
 
 To compare numbers, run the benchmark with (`-XX:+ShowCodeDetailsInExceptionMessages`) and without (`-XX:-ShowCodeDetailsInExceptionMessages`) detailed messages.
 

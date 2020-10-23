@@ -34,7 +34,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
 	<modelVersion>4.0.0</modelVersion>
 
 	<name>Benchmarks</name>
-	<groupId>org.codefx.lab</groupId>
+	<groupId>dev.nipafx.lab</groupId>
 	<artifactId>benchmarks</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
