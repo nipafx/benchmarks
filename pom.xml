@@ -41,7 +41,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<javac.target>14</javac.target>
+		<javac.target>16</javac.target>
 		<junit.version>5.6.1</junit.version>
 		<jmh.version>1.23</jmh.version>
 		<uberjar.name>benchmarks</uberjar.name>
