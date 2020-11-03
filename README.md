@@ -61,7 +61,7 @@ This was done on a Ryzen 9 3900X, which has 24 logical cores, so you would expec
 
 ## Stream mapMulti
 
-Benchmarks for [the exploration of `Stream::mapMulti`](java-16-stream-mapmulti).
+Benchmarks for [the exploration of `Stream::mapMulti`](https://nipafx.dev/java-16-stream-mapmulti).
 
 ### Code
 
@@ -70,56 +70,56 @@ Benchmarks for [the exploration of `Stream::mapMulti`](java-16-stream-mapmulti).
 
 ### Results
 
-| Benchmark      |  %0s |  Size     | Score        Error  Units |
-| -------------- | ----:| ---------:|--------------------------:|
-| flatMap_count  | 0.01 |    10_000 |   90.743 ±   5.377  us/op |
-| flatMap_count  | 0.01 |   100_000 |  932.125 ±  44.921  us/op |
-| flatMap_count  | 0.01 | 1_000_000 | 9509.989 ± 140.587  us/op |
-| flatMap_count  |  0.1 |    10_000 |   87.546 ±   1.867  us/op |
-| flatMap_count  |  0.1 |   100_000 |  953.468 ±  13.979  us/op |
-| flatMap_count  |  0.1 | 1_000_000 | 0392.573 ± 432.308  us/op |
-| flatMap_count  |  0.5 |    10_000 |  101.504 ±   3.363  us/op |
-| flatMap_count  |  0.5 |   100_000 | 1150.309 ±  17.065  us/op |
-| flatMap_count  |  0.5 | 1_000_000 | 1561.187 ± 324.065  us/op |
-| flatMap_count  |  0.8 |    10_000 |   76.758 ±   7.455  us/op |
-| flatMap_count  |  0.8 |   100_000 |  875.666 ±  22.733  us/op |
-| flatMap_count  |  0.8 | 1_000_000 | 8861.991 ± 207.893  us/op |
-| flatMap_sum    | 0.01 |    10_000 |  113.009 ±   6.977  us/op |
-| flatMap_sum    | 0.01 |   100_000 | 1158.694 ±  74.973  us/op |
-| flatMap_sum    | 0.01 | 1_000_000 | 1622.151 ± 533.694  us/op |
-| flatMap_sum    |  0.1 |    10_000 |  108.073 ±   1.227  us/op |
-| flatMap_sum    |  0.1 |   100_000 | 1155.964 ±  54.148  us/op |
-| flatMap_sum    |  0.1 | 1_000_000 | 1777.393 ± 453.216  us/op |
-| flatMap_sum    |  0.5 |    10_000 |  113.230 ±   5.485  us/op |
-| flatMap_sum    |  0.5 |   100_000 | 1284.879 ±  63.869  us/op |
-| flatMap_sum    |  0.5 | 1_000_000 | 2906.395 ± 259.311  us/op |
-| flatMap_sum    |  0.8 |    10_000 |   79.432 ±   5.875  us/op |
-| flatMap_sum    |  0.8 |   100_000 |  936.235 ±  16.178  us/op |
-| flatMap_sum    |  0.8 | 1_000_000 | 9300.164 ± 222.237  us/op |
-| mapMulti_count | 0.01 |    10_000 |   11.021 ±   3.722  us/op |
-| mapMulti_count | 0.01 |   100_000 |  147.080 ±  35.460  us/op |
-| mapMulti_count | 0.01 | 1_000_000 | 1936.868 ±  54.057  us/op |
-| mapMulti_count |  0.1 |    10_000 |    8.703 ±   1.680  us/op |
-| mapMulti_count |  0.1 |   100_000 |  148.165 ±   4.892  us/op |
-| mapMulti_count |  0.1 | 1_000_000 | 1876.445 ±  76.954  us/op |
-| mapMulti_count |  0.5 |    10_000 |   14.665 ±   6.894  us/op |
-| mapMulti_count |  0.5 |   100_000 |  374.459 ±  20.920  us/op |
-| mapMulti_count |  0.5 | 1_000_000 | 4005.131 ±  62.601  us/op |
-| mapMulti_count |  0.8 |    10_000 |    5.489 ±   0.437  us/op |
-| mapMulti_count |  0.8 |   100_000 |  186.849 ±   4.387  us/op |
-| mapMulti_count |  0.8 | 1_000_000 | 1842.542 ±  80.950  us/op |
-| mapMulti_sum   | 0.01 |    10_000 |   18.161 ±   0.632  us/op |
-| mapMulti_sum   | 0.01 |   100_000 |  183.985 ±   3.982  us/op |
-| mapMulti_sum   | 0.01 | 1_000_000 | 2309.631 ±  60.015  us/op |
-| mapMulti_sum   |  0.1 |    10_000 |   16.771 ±   0.379  us/op |
-| mapMulti_sum   |  0.1 |   100_000 |  187.113 ±   9.438  us/op |
-| mapMulti_sum   |  0.1 | 1_000_000 | 2333.962 ±  72.094  us/op |
-| mapMulti_sum   |  0.5 |    10_000 |    9.876 ±   0.206  us/op |
-| mapMulti_sum   |  0.5 |   100_000 |  393.450 ±  19.738  us/op |
-| mapMulti_sum   |  0.5 | 1_000_000 | 4327.512 ± 394.266  us/op |
-| mapMulti_sum   |  0.8 |    10_000 |    7.022 ±   0.160  us/op |
-| mapMulti_sum   |  0.8 |   100_000 |  218.717 ±  24.815  us/op |
-| mapMulti_sum   |  0.8 | 1_000_000 | 2024.602 ±  62.695  us/op |
+| Benchmark      |  %0s |  Size     | Score         Error  Units |
+| -------------- | ----:| ---------:|---------------,-----------:|
+| flatMap_count  | 0.01 |    10_000 |    90.743 ±   5.377  us/op |
+| flatMap_count  | 0.01 |   100_000 |   932.125 ±  44.921  us/op |
+| flatMap_count  | 0.01 | 1_000_000 |  9509.989 ± 140.587  us/op |
+| flatMap_count  |  0.1 |    10_000 |    87.546 ±   1.867  us/op |
+| flatMap_count  |  0.1 |   100_000 |   953.468 ±  13.979  us/op |
+| flatMap_count  |  0.1 | 1_000_000 | 10392.573 ± 432.308  us/op |
+| flatMap_count  |  0.5 |    10_000 |   101.504 ±   3.363  us/op |
+| flatMap_count  |  0.5 |   100_000 |  1150.309 ±  17.065  us/op |
+| flatMap_count  |  0.5 | 1_000_000 |  1561.187 ± 324.065  us/op |
+| flatMap_count  |  0.8 |    10_000 |    76.758 ±   7.455  us/op |
+| flatMap_count  |  0.8 |   100_000 |   875.666 ±  22.733  us/op |
+| flatMap_count  |  0.8 | 1_000_000 |  8861.991 ± 207.893  us/op |
+| flatMap_sum    | 0.01 |    10_000 |   113.009 ±   6.977  us/op |
+| flatMap_sum    | 0.01 |   100_000 |  1158.694 ±  74.973  us/op |
+| flatMap_sum    | 0.01 | 1_000_000 |  1622.151 ± 533.694  us/op |
+| flatMap_sum    |  0.1 |    10_000 |   108.073 ±   1.227  us/op |
+| flatMap_sum    |  0.1 |   100_000 |  1155.964 ±  54.148  us/op |
+| flatMap_sum    |  0.1 | 1_000_000 |  1777.393 ± 453.216  us/op |
+| flatMap_sum    |  0.5 |    10_000 |   113.230 ±   5.485  us/op |
+| flatMap_sum    |  0.5 |   100_000 |  1284.879 ±  63.869  us/op |
+| flatMap_sum    |  0.5 | 1_000_000 |  2906.395 ± 259.311  us/op |
+| flatMap_sum    |  0.8 |    10_000 |    79.432 ±   5.875  us/op |
+| flatMap_sum    |  0.8 |   100_000 |   936.235 ±  16.178  us/op |
+| flatMap_sum    |  0.8 | 1_000_000 |  9300.164 ± 222.237  us/op |
+| mapMulti_count | 0.01 |    10_000 |    11.021 ±   3.722  us/op |
+| mapMulti_count | 0.01 |   100_000 |   147.080 ±  35.460  us/op |
+| mapMulti_count | 0.01 | 1_000_000 |  1936.868 ±  54.057  us/op |
+| mapMulti_count |  0.1 |    10_000 |     8.703 ±   1.680  us/op |
+| mapMulti_count |  0.1 |   100_000 |   148.165 ±   4.892  us/op |
+| mapMulti_count |  0.1 | 1_000_000 |  1876.445 ±  76.954  us/op |
+| mapMulti_count |  0.5 |    10_000 |    14.665 ±   6.894  us/op |
+| mapMulti_count |  0.5 |   100_000 |   374.459 ±  20.920  us/op |
+| mapMulti_count |  0.5 | 1_000_000 |  4005.131 ±  62.601  us/op |
+| mapMulti_count |  0.8 |    10_000 |     5.489 ±   0.437  us/op |
+| mapMulti_count |  0.8 |   100_000 |   186.849 ±   4.387  us/op |
+| mapMulti_count |  0.8 | 1_000_000 |  1842.542 ±  80.950  us/op |
+| mapMulti_sum   | 0.01 |    10_000 |    18.161 ±   0.632  us/op |
+| mapMulti_sum   | 0.01 |   100_000 |   183.985 ±   3.982  us/op |
+| mapMulti_sum   | 0.01 | 1_000_000 |  2309.631 ±  60.015  us/op |
+| mapMulti_sum   |  0.1 |    10_000 |    16.771 ±   0.379  us/op |
+| mapMulti_sum   |  0.1 |   100_000 |   187.113 ±   9.438  us/op |
+| mapMulti_sum   |  0.1 | 1_000_000 |  2333.962 ±  72.094  us/op |
+| mapMulti_sum   |  0.5 |    10_000 |     9.876 ±   0.206  us/op |
+| mapMulti_sum   |  0.5 |   100_000 |   393.450 ±  19.738  us/op |
+| mapMulti_sum   |  0.5 | 1_000_000 |  4327.512 ± 394.266  us/op |
+| mapMulti_sum   |  0.8 |    10_000 |     7.022 ±   0.160  us/op |
+| mapMulti_sum   |  0.8 |   100_000 |   218.717 ±  24.815  us/op |
+| mapMulti_sum   |  0.8 | 1_000_000 |  2024.602 ±  62.695  us/op |
 
 
 ## Unmodifiable List
