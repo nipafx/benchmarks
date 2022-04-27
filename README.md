@@ -4,7 +4,7 @@ Arbitrary Java performance benchmarks, implemented with [JMH](http://openjdk.jav
 You can run them with:
 
 	mvn package
-	java --enable-preview -jar target/benchmarks.jar ${BENCHMARK}
+	java --enable-preview --add-modules=jdk.incubator.vector -jar target/benchmarks.jar ${BENCHMARK}
 
 Replace `${BENCHMARK}` with either a package or class name to run just the specified tests.
 
@@ -16,6 +16,7 @@ Benchmarks:
 * [wrapping in `Collections::unmodifiableList`](#unmodifiable-list)
 * [removing from `ArrayList`](#arraylistremoveat)
 * [helpful NPE messages](#helpful-npe-messages)
+* [vector API](#vector-api)
 
 
 ## Stream
@@ -304,3 +305,29 @@ NpeBenchmarks.throwNpeFromNullReturn               true  avgt    3       21,593 
 NpeBenchmarks.throwNpeManually                    false  avgt    3      924,070 ±    194,407  ns/op
 NpeBenchmarks.throwNpeManually                     true  avgt    3      941,316 ±    172,077  ns/op
 ```
+
+
+## Vector API
+
+The vector API promises reliable vectorization of numerical and logical computations, particularly in loops.
+The comparison is between "regular" loops (that may be auto-vectorized by the JIT) and vectorized loops.
+
+### Code
+
+* **Package**: [`dev.nipafx.lab.benchmarks.vector`](src/main/java/dev/nipafx/lab/benchmarks/vector)
+* **Classes**:
+	* [`ImageColors`](src/main/java/dev/nipafx/lab/benchmarks/vector/ImageColors.java): does some simple pixel-by-pixel color manipulation - benchmark for [this vector demo](https://github.com/nipafx/demo-java-x/blob/main/src/main/java/dev/nipafx/demo/java_next/api/vector/ImageColors.java)
+
+### Preliminary Results
+
+```
+Benchmark                            Mode  Cnt       Score       Error  Units
+ImageColors.invertColors             avgt    9   52158.239 ± 19513.007  us/op
+ImageColors.invertColors_vectorized  avgt    9   15036.490 ±  4313.103  us/op
+ImageColors.purpleShift              avgt    9  217830.220 ± 93890.988  us/op
+ImageColors.purpleShift_vectorized   avgt    9   24536.969 ±  9002.955  us/op
+ImageColors.rotateColors             avgt    9   49739.629 ± 19339.702  us/op
+ImageColors.rotateColors_vectorized  avgt    9   14960.650 ±  4031.095  us/op
+```
+
+This was taken on my laptop without shutting down other programs, so they're not very reliable.
