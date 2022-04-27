@@ -3,7 +3,7 @@
 Arbitrary Java performance benchmarks, implemented with [JMH](http://openjdk.java.net/projects/code-tools/jmh/).
 You can run them with:
 
-	mvn clean install
+	mvn package
 	java --enable-preview -jar target/benchmarks.jar ${BENCHMARK}
 
 Replace `${BENCHMARK}` with either a package or class name to run just the specified tests.
