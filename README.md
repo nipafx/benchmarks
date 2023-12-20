@@ -72,7 +72,7 @@ Benchmarks for [the exploration of `Stream::mapMulti`](https://nipafx.dev/java-1
 ### Results
 
 | Benchmark      |  %0s |  Size     | Score         Error  Units |
-| -------------- | ----:| ---------:|---------------,-----------:|
+| -------------- | ----:| ---------:|---------------------------:|
 | flatMap_count  | 0.01 |    10_000 |    90.743 ±   5.377  us/op |
 | flatMap_count  | 0.01 |   100_000 |   932.125 ±  44.921  us/op |
 | flatMap_count  | 0.01 | 1_000_000 |  9509.989 ± 140.587  us/op |
